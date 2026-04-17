@@ -1,74 +1,2081 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfólio Diego Souza</title>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;0,900;1,300;1,700;1,900&display=swap" rel="stylesheet">
-  <!-- Dev Icon Fonts -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css">
-  <!-- CSS do Projeto -->
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Diego Souza | Automação, IA e Sistemas sob medida</title>
+  <meta
+    name="description"
+    content="Diego Souza desenvolve sistemas, automações e integrações com IA para eliminar trabalho manual, ganhar escala e acelerar operações."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Design tokens */
+    :root {
+      --bg: #07080d;
+      --bg-soft: #0f1320;
+      --panel: rgba(15, 19, 32, 0.74);
+      --panel-strong: rgba(17, 23, 39, 0.94);
+      --line: rgba(255, 255, 255, 0.1);
+      --text: #f5f7fb;
+      --muted: #9da8c6;
+      --primary: #69f0d2;
+      --secondary: #7c8cff;
+      --primary-strong: #3ed8b7;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --container: 1180px;
+      --nav-height: 84px;
+      --transition: 240ms ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(105, 240, 210, 0.16), transparent 28%),
+        radial-gradient(circle at 85% 15%, rgba(124, 140, 255, 0.18), transparent 24%),
+        linear-gradient(180deg, #080a12 0%, #07080d 48%, #0a0d17 100%);
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: radial-gradient(circle at center, black 44%, transparent 88%);
+      opacity: 0.45;
+      animation: drift 18s linear infinite;
+    }
+
+    @keyframes drift {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(0, 24px, 0); }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 110px 0;
+      position: relative;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding: 9px 14px;
+      border: 1px solid rgba(105, 240, 210, 0.16);
+      border-radius: 999px;
+      background: rgba(105, 240, 210, 0.08);
+      color: var(--primary);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 18px currentColor;
+    }
+
+    h1, h2, h3 {
+      font-family: "Syne", sans-serif;
+      letter-spacing: -0.03em;
+      line-height: 1.02;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      max-width: 12ch;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      max-width: 12ch;
+    }
+
+    h3 {
+      font-size: 1.35rem;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .lead {
+      font-size: 1.16rem;
+      max-width: 62ch;
+    }
+
+    .grid {
+      display: grid;
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+        var(--panel);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(105, 240, 210, 0.28);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      pointer-events: none;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(105, 240, 210, 0.15), transparent 40%, rgba(124, 140, 255, 0.18));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      transition: background var(--transition), border-color var(--transition), backdrop-filter var(--transition);
+    }
+
+    .site-header.is-scrolled {
+      background: rgba(7, 8, 13, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-family: "Syne", sans-serif;
+      color: #08110f;
+      background: linear-gradient(135deg, var(--primary) 0%, #bafced 100%);
+      box-shadow: 0 10px 30px rgba(105, 240, 210, 0.22);
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      font-size: 0.96rem;
+      transition: color var(--transition);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      transition: transform var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      padding: 12px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+      font-weight: 600;
+      transition: transform var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .nav-cta:hover,
+    .button.secondary:hover {
+      transform: translateY(-2px);
+      border-color: rgba(124, 140, 255, 0.3);
+      background: rgba(124, 140, 255, 0.08);
+    }
+
+    /* Hero */
+    .hero {
+      padding-top: 72px;
+      padding-bottom: 84px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-copy p {
+      margin-top: 24px;
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 34px;
+      max-width: 520px;
+    }
+
+    .contact-strip {
+      margin-top: 22px;
+    }
+
+    .hero-contact-strip {
+      margin-top: 0;
+      margin-bottom: 26px;
+      max-width: 720px;
+    }
+
+    .contact-strip-title {
+      margin-bottom: 14px;
+      color: rgba(245, 247, 251, 0.8);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .contact-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      width: 100%;
+    }
+
+    .contact-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 60px;
+      padding: 0 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), filter var(--transition);
+    }
+
+    .contact-button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 55%);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .contact-button:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28);
+      filter: brightness(1.05);
+    }
+
+    .contact-button:hover::before {
+      opacity: 1;
+    }
+
+    .contact-button:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.72);
+      outline-offset: 3px;
+    }
+
+    .contact-button svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .contact-button span {
+      position: relative;
+      z-index: 1;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #f8fbff;
+    }
+
+    .contact-button.whatsapp {
+      border-color: rgba(37, 211, 102, 0.38);
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.28), rgba(10, 19, 17, 0.92));
+    }
+
+    .contact-button.linkedin {
+      border-color: rgba(10, 102, 194, 0.4);
+      background: linear-gradient(135deg, rgba(10, 102, 194, 0.3), rgba(11, 16, 30, 0.92));
+    }
+
+    .contact-button.github {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.13), rgba(9, 11, 19, 0.94));
+    }
+
+    .contact-buttons.is-loaded .contact-button {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: contactButtonIn 720ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .contact-buttons.is-loaded .contact-button:nth-child(2) {
+      animation-delay: 110ms;
+    }
+
+    .contact-buttons.is-loaded .contact-button:nth-child(3) {
+      animation-delay: 220ms;
+    }
+
+    @keyframes contactButtonIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .button.primary {
+      color: #05100f;
+      background: linear-gradient(135deg, var(--primary) 0%, #b8fff1 100%);
+      box-shadow: 0 16px 40px rgba(105, 240, 210, 0.24);
+    }
+
+    .button.primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 22px 50px rgba(105, 240, 210, 0.34);
+    }
+
+    .button.secondary {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    .hero-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 42px;
+    }
+
+    .hero-highlights .metric {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 0 0 rgba(105, 240, 210, 0);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .hero-highlights .metric:hover {
+      transform: translateY(-4px);
+      border-color: rgba(105, 240, 210, 0.22);
+      box-shadow: 0 0 24px rgba(105, 240, 210, 0.14);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.75rem;
+      font-family: "Syne", sans-serif;
+      color: var(--text);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 600px;
+      padding: 18px;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background:
+        radial-gradient(circle at 20% 18%, rgba(105, 240, 210, 0.2), transparent 26%),
+        radial-gradient(circle at 80% 20%, rgba(124, 140, 255, 0.18), transparent 24%),
+        linear-gradient(180deg, rgba(11, 14, 24, 0.98), rgba(8, 10, 18, 0.88));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      border-radius: 999px;
+      filter: blur(24px);
+      opacity: 0.55;
+    }
+
+    .hero-visual::before {
+      width: 220px;
+      height: 220px;
+      top: 20px;
+      right: -30px;
+      background: rgba(124, 140, 255, 0.4);
+      animation: floatOrb 9s ease-in-out infinite;
+    }
+
+    .hero-visual::after {
+      width: 180px;
+      height: 180px;
+      bottom: 60px;
+      left: -20px;
+      background: rgba(105, 240, 210, 0.3);
+      animation: floatOrb 11s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, 18px, 0); }
+    }
+
+    .signal-grid {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      background-size: 68px 68px;
+      mask-image: radial-gradient(circle at center, black 46%, transparent 92%);
+      opacity: 0.4;
+      animation: pulseGrid 8s ease-in-out infinite;
+    }
+
+    @keyframes pulseGrid {
+      0%, 100% { transform: scale(1); opacity: 0.28; }
+      50% { transform: scale(1.04); opacity: 0.42; }
+    }
+
+    .visual-stack {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 16px;
+    }
+
+    .glass-panel {
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px);
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(105, 240, 210, 0.12);
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .status-pill::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .signal-board {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .signal-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(7, 8, 13, 0.46);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .signal-item strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .signal-badge {
+      align-self: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #04100d;
+      background: linear-gradient(135deg, var(--primary) 0%, #b7fff1 100%);
+      box-shadow: 0 0 24px rgba(105, 240, 210, 0.25);
+    }
+
+    .process-rail {
+      display: grid;
+      gap: 16px;
+      align-content: end;
+    }
+
+    .process-step {
+      position: relative;
+      padding: 18px 18px 18px 52px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .process-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #091012;
+      background: linear-gradient(135deg, var(--secondary), #bcc6ff);
+    }
+
+    /* About */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .profile-card {
+      padding: 26px;
+      background:
+        radial-gradient(circle at top left, rgba(105, 240, 210, 0.16), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(124, 140, 255, 0.18), transparent 28%),
+        var(--panel);
+    }
+
+    .profile-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      object-position: center 24%;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      filter: saturate(1.08) contrast(1.02);
+      box-shadow: 0 0 36px rgba(124, 140, 255, 0.14);
+    }
+
+    .about-card {
+      padding: 34px;
+    }
+
+    .about-copy {
+      display: grid;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .about-proof {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .proof-item {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .proof-item strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 1.2rem;
+    }
+
+    /* Services */
+    .services-grid,
+    .differentials-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .service-card,
+    .differential-card {
+      padding: 26px;
+    }
+
+    .icon-box {
+      width: 52px;
+      height: 52px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(105, 240, 210, 0.16), rgba(124, 140, 255, 0.12));
+      color: var(--primary);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 24px rgba(105, 240, 210, 0.14);
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .card:hover .icon-box {
+      transform: translateY(-2px) scale(1.04);
+      border-color: rgba(105, 240, 210, 0.24);
+      box-shadow: 0 0 32px rgba(105, 240, 210, 0.24), 0 0 18px rgba(124, 140, 255, 0.16);
+    }
+
+    .service-card p,
+    .differential-card p {
+      margin-top: 12px;
+    }
+
+    /* Skills */
+    .skills-shell {
+      position: relative;
+      padding: 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(105, 240, 210, 0.12), transparent 30%),
+        radial-gradient(circle at 85% 20%, rgba(124, 140, 255, 0.14), transparent 24%),
+        linear-gradient(180deg, rgba(12, 15, 27, 0.92), rgba(10, 12, 22, 0.86));
+    }
+
+    .skills-shell::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, black 55%, transparent 96%);
+      opacity: 0.34;
+    }
+
+    .skills-intro {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 22px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    .skills-note {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 0 32px rgba(124, 140, 255, 0.1);
+    }
+
+    .skills-legend {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      box-shadow: 0 0 14px currentColor;
+    }
+
+    .legend-dot.advanced {
+      color: #69f0d2;
+      background: #69f0d2;
+    }
+
+    .legend-dot.intermediate {
+      color: #ffd06c;
+      background: #ffd06c;
+    }
+
+    .legend-dot.base {
+      color: #62b1ff;
+      background: #62b1ff;
+    }
+
+    .specialties-grid {
+      position: relative;
+      z-index: 1;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-bottom: 28px;
+    }
+
+    .specialty-card {
+      padding: 24px;
+      min-height: 180px;
+      background:
+        radial-gradient(circle at top right, rgba(105, 240, 210, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        var(--panel);
+    }
+
+    .stack-marquee {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      margin-bottom: 28px;
+      mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    }
+
+    .stack-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .stack-pill {
+      padding: 11px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      white-space: nowrap;
+      box-shadow: 0 0 18px rgba(105, 240, 210, 0.08);
+    }
+
+    .skills-grid {
+      position: relative;
+      z-index: 1;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .tech-card {
+      padding: 24px;
+      min-height: 236px;
+    }
+
+    .tech-card.featured {
+      background:
+        radial-gradient(circle at top right, rgba(105, 240, 210, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+        var(--panel);
+    }
+
+    .tech-card.featured[data-level="advanced"] {
+      border-color: rgba(105, 240, 210, 0.2);
+      box-shadow: 0 0 0 1px rgba(105, 240, 210, 0.08), 0 24px 80px rgba(0, 0, 0, 0.35), 0 0 34px rgba(105, 240, 210, 0.12);
+    }
+
+    .tech-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .tech-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 24px rgba(105, 240, 210, 0.14);
+      animation: iconFloat 5.5s ease-in-out infinite;
+    }
+
+    .tech-icon img,
+    .tech-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    .tech-card:nth-child(2n) .tech-icon {
+      animation-duration: 6.8s;
+    }
+
+    .tech-card:nth-child(3n) .tech-icon {
+      animation-duration: 7.3s;
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .tech-card:hover .tech-icon {
+      box-shadow: 0 0 32px rgba(105, 240, 210, 0.22), 0 0 18px rgba(124, 140, 255, 0.12);
+    }
+
+    .tech-level {
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tech-level.advanced {
+      color: var(--primary);
+      background: rgba(105, 240, 210, 0.1);
+      box-shadow: 0 0 20px rgba(105, 240, 210, 0.12);
+    }
+
+    .tech-level.intermediate {
+      color: #ffd06c;
+      background: rgba(255, 208, 108, 0.1);
+      box-shadow: 0 0 18px rgba(255, 208, 108, 0.1);
+    }
+
+    .tech-level.base {
+      color: #62b1ff;
+      background: rgba(98, 177, 255, 0.12);
+      box-shadow: 0 0 18px rgba(98, 177, 255, 0.12);
+    }
+
+    .tech-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .tech-card p {
+      margin-bottom: 16px;
+    }
+
+    .tech-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .tech-meta i {
+      color: var(--primary);
+    }
+
+    /* Projects */
+    .projects-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .project-card {
+      padding: 30px;
+    }
+
+    .project-tag {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--secondary);
+      background: rgba(124, 140, 255, 0.12);
+      border: 1px solid rgba(124, 140, 255, 0.16);
+    }
+
+    .project-flow {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .project-flow div {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .project-flow strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .projects-actions {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Final CTA */
+    .cta-card {
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      background:
+        radial-gradient(circle at top right, rgba(124, 140, 255, 0.24), transparent 30%),
+        radial-gradient(circle at left center, rgba(105, 240, 210, 0.16), transparent 30%),
+        var(--panel-strong);
+    }
+
+    .cta-card p {
+      margin-top: 16px;
+      max-width: 52ch;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: flex-end;
+    }
+
+    .cta-side {
+      display: grid;
+      gap: 18px;
+      justify-items: end;
+    }
+
+    .cta-side .contact-strip {
+      width: min(100%, 720px);
+      margin-top: 0;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 30px 0 46px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-layout {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      color: var(--muted);
+    }
+
+    .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+    }
+
+    .footer-links a svg {
+      width: 19px;
+      height: 19px;
+    }
+
+    .footer-links a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(105, 240, 210, 0.28);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .footer-links a:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.72);
+      outline-offset: 3px;
+    }
+
+    .footer-links .footer-year {
+      margin-left: 6px;
+      font-size: 0.94rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .footer-links a.whatsapp {
+      border-color: rgba(37, 211, 102, 0.28);
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.18), rgba(10, 19, 17, 0.9));
+    }
+
+    .footer-links a.linkedin {
+      border-color: rgba(10, 102, 194, 0.28);
+      background: linear-gradient(135deg, rgba(10, 102, 194, 0.2), rgba(11, 16, 30, 0.92));
+    }
+
+    .footer-links a.github {
+      border-color: rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(9, 11, 19, 0.94));
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-layout,
+      .about-layout,
+      .skills-intro,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid,
+      .specialties-grid,
+      .services-grid,
+      .differentials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-visual {
+        min-height: 520px;
+      }
+
+      .cta-actions {
+        justify-content: flex-start;
+      }
+
+      .cta-side {
+        justify-items: stretch;
+      }
+
+      .contact-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --nav-height: 76px;
+      }
+
+      .section {
+        padding: 88px 0;
+      }
+
+      .container {
+        width: min(calc(100% - 28px), var(--container));
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 0.92rem;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-highlights,
+      .projects-grid,
+      .about-proof,
+      .specialties-grid,
+      .skills-grid,
+      .services-grid,
+      .differentials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+
+      .profile-card img {
+        min-height: 340px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        max-width: 10ch;
+      }
+
+      .button,
+      .nav-cta {
+        width: 100%;
+      }
+
+      .contact-buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-button {
+        width: 100%;
+      }
+
+      .hero-actions,
+      .cta-actions {
+        flex-direction: column;
+      }
+
+      .card,
+      .profile-card img {
+        border-radius: 20px;
+      }
+
+      .service-card,
+      .differential-card,
+      .tech-card,
+      .project-card,
+      .about-card,
+      .cta-card,
+      .profile-card {
+        padding: 22px;
+      }
+
+      .signal-item,
+      .process-step,
+      .project-flow div,
+      .proof-item {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main id="container">
-    <aside id="bio-container">
-      <h2>Diego Souza</h2>
-      <img id="bio-image" src="img/diego.jpg" alt="Diego Souza">
-      <p>Olá, meu nome é Diego Souza e sou <span class="highlight">Desenvolvedor FullStack</span>.</p>
-      <p id="welcome-text">Seja bem-vindo!</p>
-      <ul id="social-container">
-        <li><a href="https://www.facebook.com/profile.php?id=100004865622247" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
-        <li><a href="https://www.linkedin.com/in/disouzadev231/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>
-        <li><a href="https://www.instagram.com/diegosouza_p/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
-        <li><a href="https://github.com/disouzadev231" target="_blank"><ion-icon name="logo-github"></ion-icon name="logo-github"></a></li>
-      </ul>
-      <div id="email-container">
-        <ion-icon name="mail-outline"></ion-icon><a href="mailto:disouzadevfull@gmail.com">disouzadevfull@gmail.com</a>
+  <!-- Header -->
+  <header class="site-header" id="topo">
+    <div class="container nav">
+      <a class="brand" href="#topo" aria-label="Ir para o topo">
+        <span class="brand-mark">DS</span>
+        <span class="brand-copy">
+          Diego Souza
+          <span>Automação, IA e sistemas sob medida</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#skills">Tecnologias</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#diferenciais">Diferenciais</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="section hero">
+      <div class="container hero-layout">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Para empresas e recrutadores</span>
+          <div class="contact-strip hero-contact-strip reveal">
+            <p class="contact-strip-title">Canais para contato rápido</p>
+            <div class="contact-buttons" aria-label="Links de contato rápido">
+              <a
+                class="contact-button whatsapp"
+                href="https://wa.me/5531985789844?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Conversar pelo WhatsApp"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="#25D366">
+                  <path d="M20.52 3.48A11.82 11.82 0 0 0 12.07 0C5.54 0 .24 5.3.24 11.83c0 2.09.55 4.13 1.58 5.93L0 24l6.42-1.68a11.78 11.78 0 0 0 5.65 1.44h.01c6.53 0 11.83-5.3 11.83-11.83 0-3.16-1.23-6.13-3.39-8.45Zm-8.45 18.3h-.01a9.8 9.8 0 0 1-4.99-1.36l-.36-.22-3.81 1 1.02-3.72-.24-.38a9.8 9.8 0 0 1-1.5-5.27c0-5.42 4.42-9.84 9.86-9.84 2.62 0 5.08 1.02 6.93 2.88a9.73 9.73 0 0 1 2.88 6.95c0 5.43-4.42 9.85-9.84 9.85Zm5.4-7.38c-.3-.15-1.79-.88-2.07-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.5-1.8-1.67-2.1-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.25-.25-.6-.5-.53-.68-.54-.18 0-.38-.01-.58-.01-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51s1.08 2.92 1.23 3.12c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.49 1.72.62.72.23 1.38.2 1.9.12.58-.09 1.79-.73 2.04-1.44.25-.7.25-1.31.18-1.44-.08-.13-.28-.2-.58-.35Z"/>
+                </svg>
+                <span>WhatsApp</span>
+              </a>
+              <a
+                class="contact-button linkedin"
+                href="https://www.linkedin.com/in/diegosouzadev"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ver perfil no LinkedIn"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="#0A66C2">
+                  <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.2.8 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/>
+                </svg>
+                <span>LinkedIn</span>
+              </a>
+              <a
+                class="contact-button github"
+                href="https://github.com/diegoejack97-cpu"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ver perfil no GitHub"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="#F5F7FB">
+                  <path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.1.82-.26.82-.58v-2.04c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.62-2.8 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .3Z"/>
+                </svg>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+
+          <h1>Sistemas que eliminam trabalho manual e escalam operações</h1>
+          <p class="lead">
+            Eu projeto soluções que conectam automação de processos, integrações com APIs e agentes de IA para reduzir gargalos, acelerar fluxos internos e transformar rotina operacional em vantagem competitiva, com repertório técnico sólido para clientes diretos e recrutadores.
+          </p>
+
+          <div class="contact-buttons hero-actions" aria-label="Ações principais">
+            <a
+              class="contact-button whatsapp"
+              href="https://wa.me/5531985789844?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Conversar pelo WhatsApp"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="#25D366">
+                <path d="M20.52 3.48A11.82 11.82 0 0 0 12.07 0C5.54 0 .24 5.3.24 11.83c0 2.09.55 4.13 1.58 5.93L0 24l6.42-1.68a11.78 11.78 0 0 0 5.65 1.44h.01c6.53 0 11.83-5.3 11.83-11.83 0-3.16-1.23-6.13-3.39-8.45Zm-8.45 18.3h-.01a9.8 9.8 0 0 1-4.99-1.36l-.36-.22-3.81 1 1.02-3.72-.24-.38a9.8 9.8 0 0 1-1.5-5.27c0-5.42 4.42-9.84 9.86-9.84 2.62 0 5.08 1.02 6.93 2.88a9.73 9.73 0 0 1 2.88 6.95c0 5.43-4.42 9.85-9.84 9.85Zm5.4-7.38c-.3-.15-1.79-.88-2.07-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.5-1.8-1.67-2.1-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.25-.25-.6-.5-.53-.68-.54-.18 0-.38-.01-.58-.01-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51s1.08 2.92 1.23 3.12c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.49 1.72.62.72.23 1.38.2 1.9.12.58-.09 1.79-.73 2.04-1.44.25-.7.25-1.31.18-1.44-.08-.13-.28-.2-.58-.35Z"/>
+              </svg>
+              <span>Vamos conversar</span>
+            </a>
+            <a
+              class="contact-button github"
+              href="https://github.com/diegoejack97-cpu"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Ver projetos no GitHub"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" fill="#F5F7FB">
+                <path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.1.82-.26.82-.58v-2.04c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.62-2.8 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .3Z"/>
+              </svg>
+              <span>Ver projetos</span>
+            </a>
+          </div>
+
+          <div class="hero-highlights">
+            <div class="metric">
+              <strong>+3 anos</strong>
+              <p>Desenvolvendo software com foco em operação, automação e entrega prática.</p>
+            </div>
+            <div class="metric">
+              <strong>1,5 ano</strong>
+              <p>Atuação na FIEMG com processos corporativos, workflows e IA em larga escala.</p>
+            </div>
+            <div class="metric">
+              <strong>2 produtos</strong>
+              <p>Sistemas próprios criados para monitoramento e geração automática de relatórios.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="signal-grid" aria-hidden="true"></div>
+          <div class="visual-stack">
+            <div class="glass-panel status-bar">
+              <div>
+                <strong>Operação mais previsível</strong>
+                <p>Fluxos automatizados, dados conectados e menos intervenção manual.</p>
+              </div>
+              <span class="status-pill">IA em produção</span>
+            </div>
+
+            <div class="glass-panel signal-board">
+              <div class="signal-item">
+                <div>
+                  <strong>Monitoramento contínuo</strong>
+                  <p>Rotinas e eventos críticos observados sem depender de acompanhamento manual.</p>
+                </div>
+                <span class="signal-badge">Alertas</span>
+              </div>
+              <div class="signal-item">
+                <div>
+                  <strong>Integrações operacionais</strong>
+                  <p>Sistemas antes isolados passam a trocar dados e acionar processos entre si.</p>
+                </div>
+                <span class="signal-badge">APIs</span>
+              </div>
+              <div class="signal-item">
+                <div>
+                  <strong>Relatórios automáticos</strong>
+                  <p>Informação sai do modo artesanal e entra em um fluxo previsível e escalável.</p>
+                </div>
+                <span class="signal-badge">Escala</span>
+              </div>
+            </div>
+
+            <div class="process-rail">
+              <div class="process-step" data-step="1">
+                <strong>Entendo o processo antes do código</strong>
+                <p>O objetivo é remover atrito operacional e não apenas entregar uma interface bonita.</p>
+              </div>
+              <div class="process-step" data-step="2">
+                <strong>Traduzo gargalos em automação útil</strong>
+                <p>Mapeio regras, integrações e pontos de decisão para construir fluxos robustos.</p>
+              </div>
+              <div class="process-step" data-step="3">
+                <strong>Entrego solução pronta para gerar valor</strong>
+                <p>Da ideia ao deploy, com foco em adoção real e ganho operacional percebido.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </aside>
-    <section id="about-container">
-      <h1 id="name">Diego Souza</h1>
-      <p id="title"><span class="highlight">Desenvolvedor FullStack</span></p>
-      <p class="description">Sou um desenvolvedor Focado, Organizado e Disciplinado . Gosto de participar do projeto desde a <span class="highlight">definição das regras de negócio e levantamento de requisito</span> até o <span class="highlight">deploy da aplicação</span>.</p>
-      <p class="description">Atuo tanto no <span class="highlight">front</span> como no <span class="highlight">back-end</span>, e amo tecnologia, estudo todos os dias para me tornar cada vez melhor e escrever códigos de qualidade.</p>
-      <a href="https://github.com/disouzadev231" id="btn-projects"><ion-icon name="share-social-outline"></ion-icon> <span>Projetos</span></a>
-      <h2 id="skills-section-title">Minhas Skills</h2>
-      <p class="description">Conheça as tecnologias que domino:</p>
-      <div id="skills-container">
-        <div class="skills-box">
-          <p class="skills-title">Front-end</p>
-          <i class="devicon-html5-plain colored"></i>
-          <i class="devicon-css3-plain colored"></i>
-          <i class="devicon-javascript-plain colored"></i>
+    </section>
+
+    <!-- Sobre -->
+    <section class="section" id="sobre">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Sobre mim</span>
+          <h2>Base técnica sólida, visão de negócio e experiência aplicada</h2>
         </div>
-        <div class="skills-box">
-          <p class="skills-title">Back-end</p>
-          <i class="devicon-nodejs-plain colored"></i>
-          <i class="devicon-python-plain colored"></i>
+
+        <div class="about-layout">
+          <div class="card profile-card reveal">
+            <img src="img/diego-profile-2026.jpeg" alt="Diego Souza">
+          </div>
+
+          <div class="card about-card reveal">
+            <div class="about-copy">
+              <p>
+                Sou formado em Ciência da Computação e atuo há mais de 3 anos desenvolvendo soluções que tornam operações mais rápidas, previsíveis e escaláveis.
+              </p>
+              <p>
+                Hoje trabalho na FIEMG, onde venho atuando há 1 ano e meio com automação de processos, BPMS, integrações com APIs externas e aplicação de agentes de IA em contexto corporativo de grande porte.
+              </p>
+              <p>
+                Meu foco é resolver problemas que drenam tempo e energia da equipe: tarefas repetitivas, fluxos quebrados, sistemas que não se conversam e decisões operacionais lentas.
+              </p>
+              <p>
+                Além da atuação em empresa, também desenvolvi sistemas próprios como o Argus e o ReportFlow, levando ideias do problema real até a solução funcional.
+              </p>
+            </div>
+
+            <div class="about-proof">
+              <div class="proof-item">
+                <strong>Python, JavaScript e PHP</strong>
+                <p>Linguagens aplicadas em automações, integrações e sistemas orientados à operação.</p>
+              </div>
+              <div class="proof-item">
+                <strong>RPA e workflows</strong>
+                <p>Experiência prática em processos com BPMS, regras de negócio e execução confiável.</p>
+              </div>
+              <div class="proof-item">
+                <strong>IA conectada ao processo</strong>
+                <p>Uso de agentes para apoiar decisões, acelerar rotinas e ampliar capacidade operacional.</p>
+              </div>
+              <div class="proof-item">
+                <strong>Entrega ponta a ponta</strong>
+                <p>Capacidade de sair da análise do problema até a implementação, integração e deploy.</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="skills-box">
-          <p class="skills-title">Databases</p>
-          <i class="devicon-mysql-plain colored"></i>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="card skills-shell reveal">
+          <div class="skills-intro">
+            <div>
+              <span class="eyebrow">Tecnologias & Skills</span>
+              <h2>Stack técnico organizado para construir, integrar e automatizar com consistência</h2>
+              <p class="lead">
+                Esta seção reforça profundidade técnica para recrutadores e, ao mesmo tempo, mostra para clientes a base que sustenta entregas confiáveis em automação, sistemas, integrações e IA aplicada.
+              </p>
+            </div>
+
+            <div class="skills-note">
+              <h3>Competência aplicada ao contexto</h3>
+              <p>Não trato tecnologia como vitrine. Cada skill aqui entra quando ajuda a resolver processo, integrar sistemas, automatizar decisões ou tirar trabalho manual do caminho.</p>
+            </div>
+          </div>
+
+          <div class="skills-legend">
+            <span class="legend-item"><span class="legend-dot advanced"></span>Avançado: força principal com autonomia e aplicação real</span>
+            <span class="legend-item"><span class="legend-dot intermediate"></span>Intermediário: uso frequente com boa autonomia</span>
+            <span class="legend-item"><span class="legend-dot base"></span>Base sólida: repertório consistente, mas não central</span>
+          </div>
+
+          <div class="grid specialties-grid">
+            <article class="card specialty-card reveal">
+              <div class="icon-box"><i data-lucide="bot"></i></div>
+              <h3>Automação de processos</h3>
+              <p>Mapeamento de gargalos, desenho de fluxo e execução automatizada para reduzir esforço manual e aumentar previsibilidade operacional.</p>
+            </article>
+
+            <article class="card specialty-card reveal">
+              <div class="icon-box"><i data-lucide="network"></i></div>
+              <h3>Integração de sistemas</h3>
+              <p>Conexão entre APIs, serviços e regras de negócio para fazer a operação fluir sem silos e sem retrabalho entre plataformas.</p>
+            </article>
+
+            <article class="card specialty-card reveal">
+              <div class="icon-box"><i data-lucide="layers-3"></i></div>
+              <h3>Desenvolvimento de soluções completas</h3>
+              <p>Da análise do processo ao deploy, com visão técnica e de produto para entregar algo útil, utilizável e pronto para operação.</p>
+            </article>
+          </div>
+
+          <div class="stack-marquee" aria-hidden="true">
+            <div class="stack-track">
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">JavaScript</span>
+              <span class="stack-pill">PHP</span>
+              <span class="stack-pill">SQL</span>
+              <span class="stack-pill">Flask</span>
+              <span class="stack-pill">APIs REST</span>
+              <span class="stack-pill">Selenium</span>
+              <span class="stack-pill">RPA</span>
+              <span class="stack-pill">Git / GitHub</span>
+              <span class="stack-pill">MySQL</span>
+              <span class="stack-pill">HTML / CSS</span>
+              <span class="stack-pill">Inteligência Artificial</span>
+              <span class="stack-pill">Chatbots</span>
+              <span class="stack-pill">Integrações de sistemas</span>
+              <span class="stack-pill">Python</span>
+              <span class="stack-pill">JavaScript</span>
+              <span class="stack-pill">PHP</span>
+              <span class="stack-pill">SQL</span>
+              <span class="stack-pill">Flask</span>
+              <span class="stack-pill">APIs REST</span>
+              <span class="stack-pill">Selenium</span>
+              <span class="stack-pill">RPA</span>
+              <span class="stack-pill">Git / GitHub</span>
+              <span class="stack-pill">MySQL</span>
+              <span class="stack-pill">HTML / CSS</span>
+              <span class="stack-pill">Inteligência Artificial</span>
+              <span class="stack-pill">Chatbots</span>
+              <span class="stack-pill">Integrações de sistemas</span>
+            </div>
+          </div>
+
+          <div class="grid skills-grid">
+            <article class="card tech-card featured reveal" data-level="advanced">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/python/3776AB" alt="Python">
+                </div>
+                <span class="tech-level advanced">Avançado</span>
+              </div>
+              <h3>Python</h3>
+              <p>Base principal para automações, integrações, back-end e fluxos que exigem velocidade de implementação com boa capacidade de evolução.</p>
+              <div class="tech-meta"><i data-lucide="sparkles"></i><span>Automação, dados operacionais e orquestração</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="intermediate">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/javascript/F7DF1E" alt="JavaScript">
+                </div>
+                <span class="tech-level intermediate">Intermediário</span>
+              </div>
+              <h3>JavaScript</h3>
+              <p>Uso para interfaces, interações ricas e integrações em aplicações web que precisam unir clareza visual com funcionalidade real.</p>
+              <div class="tech-meta"><i data-lucide="monitor-smartphone"></i><span>Front-end dinâmico e experiência de uso</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="intermediate">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/php/777BB4" alt="PHP">
+                </div>
+                <span class="tech-level intermediate">Intermediário</span>
+              </div>
+              <h3>PHP</h3>
+              <p>Aplicado no desenvolvimento de sistemas web e manutenção de aplicações orientadas a regras de negócio e operação.</p>
+              <div class="tech-meta"><i data-lucide="server-cog"></i><span>Back-end de negócio e integração</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="intermediate">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="database" style="color:#62b1ff;"></i>
+                </div>
+                <span class="tech-level intermediate">Intermediário</span>
+              </div>
+              <h3>SQL</h3>
+              <p>Uso em consultas, manipulação de dados e suporte a regras de negócio, com boa autonomia nas demandas comuns do dia a dia.</p>
+              <div class="tech-meta"><i data-lucide="database"></i><span>Consultas e estruturação de dados</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="intermediate">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/flask/FFFFFF" alt="Flask">
+                </div>
+                <span class="tech-level intermediate">Intermediário</span>
+              </div>
+              <h3>Flask</h3>
+              <p>Leve e eficiente para APIs, serviços internos e soluções sob medida que precisam sair rápido sem perder organização.</p>
+              <div class="tech-meta"><i data-lucide="workflow"></i><span>Serviços enxutos e APIs de suporte</span></div>
+            </article>
+
+            <article class="card tech-card featured reveal" data-level="advanced">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="cpu" style="color:#69f0d2;"></i>
+                </div>
+                <span class="tech-level advanced">Avançado</span>
+              </div>
+              <h3>Backend / Lógica de sistemas</h3>
+              <p>Estruturo regras de negócio, fluxos e integração entre camadas com foco em confiabilidade, manutenção e clareza de operação.</p>
+              <div class="tech-meta"><i data-lucide="blocks"></i><span>Arquitetura prática e lógica de negócio</span></div>
+            </article>
+
+            <article class="card tech-card featured reveal" data-level="advanced">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="waypoints" style="color:#69f0d2;"></i>
+                </div>
+                <span class="tech-level advanced">Avançado</span>
+              </div>
+              <h3>Integrações com APIs</h3>
+              <p>Conecto sistemas e automatizo troca de dados entre serviços para criar fluxos operacionais contínuos e menos dependentes de intervenção manual.</p>
+              <div class="tech-meta"><i data-lucide="plug-zap"></i><span>Comunicação entre plataformas e serviços</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="intermediate">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="waypoints" style="color:#69f0d2;"></i>
+                </div>
+                <span class="tech-level intermediate">Intermediário</span>
+              </div>
+              <h3>APIs REST</h3>
+              <p>Uso no desenho e consumo de endpoints para integração de serviços e construção de camadas de comunicação mais estáveis.</p>
+              <div class="tech-meta"><i data-lucide="plug-zap"></i><span>Integração entre sistemas e serviços</span></div>
+            </article>
+
+            <article class="card tech-card featured reveal" data-level="advanced">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/selenium/43B02A" alt="Selenium">
+                </div>
+                <span class="tech-level advanced">Avançado</span>
+              </div>
+              <h3>Selenium</h3>
+              <p>Automatizo navegação e execução de tarefas em ambientes web quando o processo exige repetibilidade e vigilância constante.</p>
+              <div class="tech-meta"><i data-lucide="mouse-pointer-click"></i><span>Automação de rotinas em interface</span></div>
+            </article>
+
+            <article class="card tech-card featured reveal" data-level="advanced">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="bot" style="color:#7c8cff;"></i>
+                </div>
+                <span class="tech-level advanced">Avançado</span>
+              </div>
+              <h3>RPA</h3>
+              <p>Desenho automações para cortar tarefas repetitivas, reduzir erro humano e liberar tempo da equipe para trabalho mais estratégico.</p>
+              <div class="tech-meta"><i data-lucide="repeat"></i><span>Eficiência operacional em escala</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="intermediate">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/git/F05032" alt="Git">
+                </div>
+                <span class="tech-level intermediate">Intermediário</span>
+              </div>
+              <h3>Git / GitHub</h3>
+              <p>Versionamento, colaboração e organização do ciclo de entrega para manter qualidade e rastreabilidade técnica.</p>
+              <div class="tech-meta"><i data-lucide="git-branch"></i><span>Controle de versão e entrega contínua</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="intermediate">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/mysql/4479A1" alt="MySQL">
+                </div>
+                <span class="tech-level intermediate">Intermediário</span>
+              </div>
+              <h3>MySQL</h3>
+              <p>Uso recorrente em persistência de dados e manutenção de aplicações, com boa familiaridade no contexto operacional e de back-end.</p>
+              <div class="tech-meta"><i data-lucide="cylinder"></i><span>Banco relacional em aplicações de negócio</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="base">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <img src="https://cdn.simpleicons.org/html5/E34F26" alt="HTML5">
+                </div>
+                <span class="tech-level base">Base sólida</span>
+              </div>
+              <h3>HTML / CSS</h3>
+              <p>Construo interfaces semânticas, responsivas e bem acabadas, com atenção real à experiência e à percepção de qualidade.</p>
+              <div class="tech-meta"><i data-lucide="panels-top-left"></i><span>Interface, responsividade e acabamento visual</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="base">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="brain-circuit" style="color:#69f0d2;"></i>
+                </div>
+                <span class="tech-level base">Base sólida</span>
+              </div>
+              <h3>Inteligência Artificial</h3>
+              <p>Experiência aplicada em agentes e uso operacional de IA, com repertório consistente, mas ainda em evolução comparado às forças principais da stack.</p>
+              <div class="tech-meta"><i data-lucide="binary"></i><span>IA aplicada a processos e produtividade</span></div>
+            </article>
+
+            <article class="card tech-card reveal" data-level="base">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="messages-square" style="color:#ff8a65;"></i>
+                </div>
+                <span class="tech-level base">Base sólida</span>
+              </div>
+              <h3>Chatbots</h3>
+              <p>Conhecimento aplicado em fluxos conversacionais e automação de interação, como extensão do trabalho com IA e integrações.</p>
+              <div class="tech-meta"><i data-lucide="message-square"></i><span>Fluxos conversacionais com utilidade real</span></div>
+            </article>
+
+            <article class="card tech-card featured reveal" data-level="advanced">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="network" style="color:#7c8cff;"></i>
+                </div>
+                <span class="tech-level advanced">Avançado</span>
+              </div>
+              <h3>Integrações de sistemas</h3>
+              <p>Uno aplicações, dados e regras de negócio para que a operação flua sem silos, retrabalho ou dependência de intervenção manual.</p>
+              <div class="tech-meta"><i data-lucide="network"></i><span>Ecossistemas conectados e workflows fluidos</span></div>
+            </article>
+
+            <article class="card tech-card featured reveal" data-level="advanced">
+              <div class="tech-top">
+                <div class="tech-icon">
+                  <i data-lucide="badge-check" style="color:#69f0d2;"></i>
+                </div>
+                <span class="tech-level advanced">Avançado</span>
+              </div>
+              <h3>BPMS e workflows</h3>
+              <p>Experiência prática em desenho e execução de processos corporativos que exigem clareza, governança e confiabilidade.</p>
+              <div class="tech-meta"><i data-lucide="route"></i><span>Processos corporativos e automação guiada</span></div>
+            </article>
+          </div>
         </div>
-        <div class="skills-box">
-          <p class="skills-title">Front-end Frameworks</p>
-          <i class="devicon-react-plain colored"></i>
-          <i class="devicon-jquery-plain colored"></i>
+      </div>
+    </section>
+
+    <!-- Serviços -->
+    <section class="section" id="servicos">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Serviços</span>
+          <h2>Soluções desenhadas para reduzir atrito e aumentar capacidade de execução</h2>
+          <p class="lead">
+            Cada entrega é pensada para resolver um problema operacional concreto: menos retrabalho, mais visibilidade e mais fluidez entre sistemas e equipes.
+          </p>
         </div>
-        <div class="skills-box">
-          <p class="skills-title">Back-end Frameworks</p>
-          <i class="devicon-django-plain colored"></i>
+
+        <div class="grid services-grid">
+          <article class="card service-card reveal">
+            <div class="icon-box"><i data-lucide="bot"></i></div>
+            <h3>Automação de Processos</h3>
+            <p>Elimino tarefas repetitivas e rotinas manuais que consomem tempo da equipe, criando fluxos mais rápidos, previsíveis e sustentáveis.</p>
+          </article>
+
+          <article class="card service-card reveal">
+            <div class="icon-box"><i data-lucide="plug-zap"></i></div>
+            <h3>Integrações com APIs</h3>
+            <p>Conecto plataformas, centralizo dados e faço sistemas que hoje operam isolados passarem a trabalhar como um ecossistema único.</p>
+          </article>
+
+          <article class="card service-card reveal">
+            <div class="icon-box"><i data-lucide="layout-template"></i></div>
+            <h3>Desenvolvimento de Sistemas</h3>
+            <p>Transformo processos que dependem de planilhas, e-mails e controles paralelos em produtos digitais claros, utilizáveis e prontos para crescer.</p>
+          </article>
+
+          <article class="card service-card reveal">
+            <div class="icon-box"><i data-lucide="sparkles"></i></div>
+            <h3>Agentes de IA</h3>
+            <p>Estruturo automações com inteligência para apoiar decisões, interpretar contexto e ampliar a capacidade operacional sem aumentar esforço manual.</p>
+          </article>
         </div>
-        <div class="skills-box">
-          <p class="skills-title">Tools</p>
-          <i class="devicon-linux-plain colored"></i>
+      </div>
+    </section>
+
+    <!-- Projetos -->
+    <section class="section" id="projetos">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Projetos</span>
+          <h2>Sistemas próprios criados para resolver problemas reais</h2>
+          <p class="lead">
+            Aqui o foco não é só tecnologia. É contexto, decisão de produto e transformação do processo em algo mais confiável e escalável.
+          </p>
+        </div>
+
+        <div class="grid projects-grid">
+          <article class="card project-card reveal">
+            <span class="project-tag">Argus</span>
+            <h3>Monitoramento automatizado para reduzir invisibilidade operacional</h3>
+            <div class="project-flow">
+              <div>
+                <strong>Problema</strong>
+                <p>Quando eventos importantes dependem de conferência manual, falhas passam despercebidas e a resposta tende a chegar tarde.</p>
+              </div>
+              <div>
+                <strong>Solução</strong>
+                <p>O Argus atua como uma camada de vigilância automatizada, observando sinais relevantes, identificando ocorrências e disparando alertas para acelerar a reação.</p>
+              </div>
+              <div>
+                <strong>Resultado</strong>
+                <p>O acompanhamento deixa de ser reativo, ganha constância e reduz a dependência de alguém lembrar de verificar o que está acontecendo.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="card project-card reveal">
+            <span class="project-tag">ReportFlow / ReportStudio</span>
+            <h3>Relatórios que saem do esforço manual para uma rotina automática</h3>
+            <div class="project-flow">
+              <div>
+                <strong>Problema</strong>
+                <p>Relatórios feitos manualmente costumam consumir tempo, gerar inconsistência e limitar a frequência com que a informação chega à operação.</p>
+              </div>
+              <div>
+                <strong>Solução</strong>
+                <p>O ReportFlow automatiza a coleta, organização e geração de relatórios, transformando um processo lento em um fluxo reproduzível e escalável.</p>
+              </div>
+              <div>
+                <strong>Resultado</strong>
+                <p>A entrega de informação fica mais rápida, menos dependente de intervenção humana e preparada para crescer sem aumentar o esforço operacional.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="section" id="diferenciais">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Diferenciais</span>
+          <h2>O que me torna útil para empresas e também atrativo para recrutadores</h2>
+        </div>
+
+        <div class="grid differentials-grid">
+          <article class="card differential-card reveal">
+            <div class="icon-box"><i data-lucide="scan-search"></i></div>
+            <h3>Pensamento analítico</h3>
+            <p>Vou além do código e leio o processo como sistema. Isso ajuda a atacar a causa do gargalo, e não apenas o sintoma.</p>
+          </article>
+
+          <article class="card differential-card reveal">
+            <div class="icon-box"><i data-lucide="target"></i></div>
+            <h3>Foco em resultado</h3>
+            <p>Minha régua não é só “funciona”. É entregar algo que reduza fricção, simplifique operação e gere valor percebido no uso real.</p>
+          </article>
+
+          <article class="card differential-card reveal">
+            <div class="icon-box"><i data-lucide="building-2"></i></div>
+            <h3>Experiência corporativa real</h3>
+            <p>Atuação na FIEMG com automação em ambiente de grande porte, lidando com fluxos, regras e necessidades que exigem robustez.</p>
+          </article>
+
+          <article class="card differential-card reveal">
+            <div class="icon-box"><i data-lucide="rocket"></i></div>
+            <h3>Execução completa solo</h3>
+            <p>Tenho repertório para conduzir a jornada inteira: entendimento do problema, desenho da solução, implementação e entrega.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section class="section">
+      <div class="container">
+        <div class="card cta-card reveal">
+          <div>
+            <span class="eyebrow">Próximo passo</span>
+            <h2>Se a sua operação precisa ganhar velocidade, previsibilidade e escala, podemos conversar.</h2>
+            <p>Atendo tanto empresas que precisam destravar processos quanto recrutadores em busca de alguém com visão técnica, senso de negócio e capacidade de execução.</p>
+          </div>
+
+          <div class="cta-side">
+            <div class="contact-strip reveal">
+              <p class="contact-strip-title">Ou fale comigo direto pelos canais abaixo</p>
+              <div class="contact-buttons" aria-label="Links de contato no encerramento da página">
+                <a
+                  class="contact-button whatsapp"
+                  href="https://wa.me/5531985789844?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Conversar pelo WhatsApp"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="#25D366">
+                    <path d="M20.52 3.48A11.82 11.82 0 0 0 12.07 0C5.54 0 .24 5.3.24 11.83c0 2.09.55 4.13 1.58 5.93L0 24l6.42-1.68a11.78 11.78 0 0 0 5.65 1.44h.01c6.53 0 11.83-5.3 11.83-11.83 0-3.16-1.23-6.13-3.39-8.45Zm-8.45 18.3h-.01a9.8 9.8 0 0 1-4.99-1.36l-.36-.22-3.81 1 1.02-3.72-.24-.38a9.8 9.8 0 0 1-1.5-5.27c0-5.42 4.42-9.84 9.86-9.84 2.62 0 5.08 1.02 6.93 2.88a9.73 9.73 0 0 1 2.88 6.95c0 5.43-4.42 9.85-9.84 9.85Zm5.4-7.38c-.3-.15-1.79-.88-2.07-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.5-1.8-1.67-2.1-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.25-.25-.6-.5-.53-.68-.54-.18 0-.38-.01-.58-.01-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51s1.08 2.92 1.23 3.12c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.49 1.72.62.72.23 1.38.2 1.9.12.58-.09 1.79-.73 2.04-1.44.25-.7.25-1.31.18-1.44-.08-.13-.28-.2-.58-.35Z"/>
+                  </svg>
+                  <span>WhatsApp</span>
+                </a>
+                <a
+                  class="contact-button linkedin"
+                  href="https://www.linkedin.com/in/diegosouzadev"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Ver perfil no LinkedIn"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="#0A66C2">
+                    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.2.8 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/>
+                  </svg>
+                  <span>LinkedIn</span>
+                </a>
+                <a
+                  class="contact-button github"
+                  href="https://github.com/diegoejack97-cpu"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Ver perfil no GitHub"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true" fill="#F5F7FB">
+                    <path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.1.82-.26.82-.58v-2.04c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.62-2.8 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .3Z"/>
+                  </svg>
+                  <span>GitHub</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
-  <!-- Ion Icons -->
-  <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-layout">
+      <div>
+        <strong>Diego Souza</strong>
+        <p>Desenvolvedor de software focado em automação, IA e sistemas de negócio.</p>
+      </div>
+
+      <div class="footer-links">
+        <a
+          class="whatsapp"
+          href="https://wa.me/5531985789844?text=Ol%C3%A1%2C%20vim%20pelo%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20saber%20mais%20sobre%20seus%20servi%C3%A7os"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Conversar pelo WhatsApp"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="#25D366">
+            <path d="M20.52 3.48A11.82 11.82 0 0 0 12.07 0C5.54 0 .24 5.3.24 11.83c0 2.09.55 4.13 1.58 5.93L0 24l6.42-1.68a11.78 11.78 0 0 0 5.65 1.44h.01c6.53 0 11.83-5.3 11.83-11.83 0-3.16-1.23-6.13-3.39-8.45Zm-8.45 18.3h-.01a9.8 9.8 0 0 1-4.99-1.36l-.36-.22-3.81 1 1.02-3.72-.24-.38a9.8 9.8 0 0 1-1.5-5.27c0-5.42 4.42-9.84 9.86-9.84 2.62 0 5.08 1.02 6.93 2.88a9.73 9.73 0 0 1 2.88 6.95c0 5.43-4.42 9.85-9.84 9.85Zm5.4-7.38c-.3-.15-1.79-.88-2.07-.98-.28-.1-.48-.15-.68.15-.2.3-.78.98-.95 1.18-.18.2-.35.22-.65.08-.3-.15-1.28-.47-2.44-1.5-.9-.8-1.5-1.8-1.67-2.1-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.68-1.64-.93-2.25-.25-.6-.5-.53-.68-.54-.18 0-.38-.01-.58-.01-.2 0-.53.08-.8.38-.28.3-1.05 1.03-1.05 2.51s1.08 2.92 1.23 3.12c.15.2 2.12 3.24 5.14 4.54.72.31 1.28.49 1.72.62.72.23 1.38.2 1.9.12.58-.09 1.79-.73 2.04-1.44.25-.7.25-1.31.18-1.44-.08-.13-.28-.2-.58-.35Z"/>
+          </svg>
+        </a>
+        <a class="linkedin" href="https://www.linkedin.com/in/diegosouzadev" target="_blank" rel="noreferrer" aria-label="Ver perfil no LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="#0A66C2">
+            <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.58 0 4.24 2.36 4.24 5.43v6.31ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45ZM22.23 0H1.77A1.77 1.77 0 0 0 0 1.77v20.46C0 23.2.8 24 1.77 24h20.46A1.77 1.77 0 0 0 24 22.23V1.77A1.77 1.77 0 0 0 22.23 0Z"/>
+          </svg>
+        </a>
+        <a class="github" href="https://github.com/diegoejack97-cpu" target="_blank" rel="noreferrer" aria-label="Ver perfil no GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="#F5F7FB">
+            <path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.1.82-.26.82-.58v-2.04c-3.34.73-4.04-1.41-4.04-1.41-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.83 1.23 1.83 1.23 1.07 1.83 2.8 1.3 3.49 1 .1-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.95 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.53.12-3.18 0 0 1.01-.32 3.3 1.23a11.4 11.4 0 0 1 6.01 0c2.29-1.55 3.29-1.23 3.29-1.23.66 1.65.25 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.62-2.8 5.64-5.48 5.94.43.37.82 1.1.82 2.22v3.3c0 .32.22.69.83.57A12 12 0 0 0 12 .3Z"/>
+          </svg>
+        </a>
+        <span class="footer-year" id="footer-year"></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    // UI behavior
+    const header = document.querySelector(".site-header");
+    const revealItems = document.querySelectorAll(".reveal");
+    const yearTarget = document.getElementById("footer-year");
+
+    const syncHeader = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 18);
+    };
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.18
+    });
+
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 45, 220)}ms`;
+      revealObserver.observe(item);
+    });
+
+    window.addEventListener("load", () => {
+      document.querySelectorAll(".contact-buttons").forEach((group) => {
+        group.classList.add("is-loaded");
+      });
+    });
+
+    yearTarget.textContent = new Date().getFullYear();
+    syncHeader();
+    window.addEventListener("scroll", syncHeader, { passive: true });
+
+    lucide.createIcons();
+  </script>
 </body>
 </html>
