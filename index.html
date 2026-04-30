@@ -538,7 +538,7 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
     }
 
     #three-container canvas {
@@ -585,6 +585,7 @@
     .signal-grid {
       position: absolute;
       inset: 0;
+      z-index: 0;
       background:
         linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
@@ -601,7 +602,7 @@
 
     .visual-stack {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       height: 100%;
       display: grid;
       grid-template-rows: auto auto 1fr;
@@ -2085,6 +2086,7 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
     // UI behavior
     const header = document.querySelector(".site-header");
     const revealItems = document.querySelectorAll(".reveal");
@@ -2123,25 +2125,28 @@
     const container = document.getElementById("three-container");
 
     if (container) {
+      console.log("Three.js iniciado");
       const scene = new THREE.Scene();
+      const width = container.clientWidth || window.innerWidth / 2;
+      const height = container.clientHeight || window.innerHeight / 2;
 
       const camera = new THREE.PerspectiveCamera(
         60,
-        container.clientWidth / container.clientHeight,
+        width / height,
         0.1,
         1000
       );
 
       const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-      renderer.setSize(container.clientWidth, container.clientHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(width, height);
       container.appendChild(renderer.domElement);
 
       const geometry = new THREE.IcosahedronGeometry(1.2, 1);
       const material = new THREE.MeshStandardMaterial({
-        color: 0x69f0d2,
+        color: 0xff0000,
         wireframe: true,
-        emissive: 0x69f0d2,
+        emissive: 0xff0000,
         emissiveIntensity: 0.2
       });
 
@@ -2177,6 +2182,7 @@
     window.addEventListener("scroll", syncHeader, { passive: true });
 
     lucide.createIcons();
+    });
   </script>
 </body>
 </html>
