@@ -2169,11 +2169,11 @@
       animate();
 
       window.addEventListener("resize", () => {
-        const width = container.clientWidth;
-        const height = container.clientHeight;
+        const w = container.clientWidth || window.innerWidth / 2;
+        const h = container.clientHeight || window.innerHeight / 2;
 
-        renderer.setSize(width, height);
-        camera.aspect = width / height;
+        renderer.setSize(w, h);
+        camera.aspect = w / h;
         camera.updateProjectionMatrix();
       });
     }
