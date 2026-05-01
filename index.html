@@ -160,6 +160,8 @@
     }
 
     .card {
+      --tilt-x: 0deg;
+      --tilt-y: 0deg;
       position: relative;
       overflow: hidden;
       border: 1px solid var(--line);
@@ -169,12 +171,17 @@
         var(--panel);
       backdrop-filter: blur(18px);
       box-shadow: var(--shadow);
-      transition: transform var(--transition), border-color var(--transition), background var(--transition);
+      transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+      will-change: transform;
     }
 
     .card:hover {
-      transform: translateY(-6px);
+      --tilt-x: 1.2deg;
+      --tilt-y: -1.6deg;
+      transform: perspective(1100px) translateY(-8px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
       border-color: rgba(105, 240, 210, 0.28);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.34);
     }
 
     .card::before {
@@ -292,7 +299,9 @@
       background: rgba(255, 255, 255, 0.04);
       color: var(--text);
       font-weight: 600;
-      transition: transform var(--transition), border-color var(--transition), background var(--transition);
+      transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
+      will-change: transform;
     }
 
     .nav-cta:hover,
@@ -377,9 +386,14 @@
     }
 
     .contact-button:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28), 0 0 24px rgba(105, 240, 210, 0.22);
       filter: brightness(1.05);
+    }
+
+    .contact-button:hover svg {
+      transform: scale(1.08) rotate(-4deg);
+      filter: drop-shadow(0 0 9px rgba(255, 255, 255, 0.35));
     }
 
     .contact-button:hover::before {
@@ -395,11 +409,12 @@
       width: 22px;
       height: 22px;
       flex-shrink: 0;
+      transition: transform var(--transition), filter var(--transition);
     }
 
     .contact-button span {
       position: relative;
-      z-index: 1;
+      z-index: 0;
       font-size: 0.98rem;
       font-weight: 700;
       color: #f8fbff;
@@ -464,8 +479,24 @@
     }
 
     .button.primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 22px 50px rgba(105, 240, 210, 0.34);
+      transform: translateY(-5px);
+      box-shadow: 0 22px 50px rgba(105, 240, 210, 0.34), 0 0 24px rgba(105, 240, 210, 0.32);
+    }
+
+    .cards .card {
+      backdrop-filter: blur(12px);
+      transform-style: preserve-3d;
+      transition: all 0.3s ease;
+    }
+
+    .cards .card:hover {
+      transform: translateY(-8px) scale(1.02) rotateX(4deg);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .botao:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 20px rgba(105, 240, 210, 0.5);
     }
 
     .button.secondary {
@@ -518,6 +549,35 @@
       overflow: hidden;
     }
 
+
+    .three-area {
+      width: 100%;
+      height: 300px;
+      margin-top: 24px;
+      position: relative;
+      border-radius: 16px;
+      background: linear-gradient(
+        180deg,
+        rgba(10, 12, 20, 0.6),
+        rgba(10, 12, 20, 0.3)
+      );
+      overflow: hidden;
+    }
+
+    #three-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      pointer-events: none;
+    }
+
+    #three-container canvas {
+      width: 100% !important;
+      height: 100% !important;
+      pointer-events: none;
+      filter: drop-shadow(0 0 30px rgba(105, 240, 210, 0.25));
+    }
+
     .hero-visual::before,
     .hero-visual::after {
       content: "";
@@ -554,6 +614,7 @@
     .signal-grid {
       position: absolute;
       inset: 0;
+      z-index: 0;
       background:
         linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
@@ -570,7 +631,6 @@
 
     .visual-stack {
       position: relative;
-      z-index: 1;
       height: 100%;
       display: grid;
       grid-template-rows: auto auto 1fr;
@@ -759,10 +819,22 @@
       transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     }
 
+    .icon-box i,
+    .icon-box svg {
+      transition: transform var(--transition), filter var(--transition);
+      transform-origin: center;
+    }
+
     .card:hover .icon-box {
       transform: translateY(-2px) scale(1.04);
       border-color: rgba(105, 240, 210, 0.24);
       box-shadow: 0 0 32px rgba(105, 240, 210, 0.24), 0 0 18px rgba(124, 140, 255, 0.16);
+    }
+
+    .card:hover .icon-box i,
+    .card:hover .icon-box svg {
+      transform: rotate(-6deg) scale(1.09);
+      filter: drop-shadow(0 0 9px rgba(105, 240, 210, 0.45));
     }
 
     .service-card p,
@@ -1473,6 +1545,9 @@
               </div>
             </div>
           </div>
+          <div class="three-area">
+            <div id="three-container" aria-hidden="true"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -2039,7 +2114,9 @@
   </footer>
 
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
     // UI behavior
     const header = document.querySelector(".site-header");
     const revealItems = document.querySelectorAll(".reveal");
@@ -2057,11 +2134,12 @@
         }
       });
     }, {
-      threshold: 0.18
+      threshold: 0.16,
+      rootMargin: "0px 0px -8% 0px"
     });
 
     revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index * 45, 220)}ms`;
+      item.style.transitionDelay = `${Math.min(index * 70, 420)}ms`;
       revealObserver.observe(item);
     });
 
@@ -2072,10 +2150,66 @@
     });
 
     yearTarget.textContent = new Date().getFullYear();
+
+    // Three.js no HERO (apenas um objeto 3D em fundo)
+    const container = document.getElementById("three-container");
+
+    if (container) {
+      console.log("Three.js iniciado");
+      const scene = new THREE.Scene();
+      const width = container.clientWidth || window.innerWidth / 2;
+      const height = container.clientHeight || window.innerHeight / 2;
+
+      const camera = new THREE.PerspectiveCamera(
+        60,
+        width / height,
+        0.1,
+        1000
+      );
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(container.clientWidth || width, container.clientHeight || height);
+      renderer.setClearColor(0x000000, 0);
+      container.appendChild(renderer.domElement);
+
+      const geometry = new THREE.IcosahedronGeometry(1.2, 1);
+      const material = new THREE.MeshStandardMaterial({
+        color: 0x69f0d2,
+        wireframe: true,
+        emissive: 0x69f0d2
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      const light = new THREE.PointLight(0xffffff, 1);
+      light.position.set(5, 5, 5);
+      scene.add(light);
+
+      camera.position.z = 3;
+
+      function animate() {
+        requestAnimationFrame(animate);
+        mesh.rotation.x += 0.003;
+        mesh.rotation.y += 0.005;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        camera.aspect = container.clientWidth / container.clientHeight;
+        camera.updateProjectionMatrix();
+      });
+    }
+
     syncHeader();
     window.addEventListener("scroll", syncHeader, { passive: true });
 
     lucide.createIcons();
+    });
   </script>
 </body>
 </html>
