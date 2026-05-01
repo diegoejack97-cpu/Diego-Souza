@@ -629,8 +629,14 @@
       50% { transform: scale(1.04); opacity: 0.42; }
     }
 
+     .hero-visual > *:not(#three-container) {
+      position: relative;
+      z-index: 2;
+    }
+
     .visual-stack {
       position: relative;
+      z-index: 2;
       height: 100%;
       display: grid;
       grid-template-rows: auto auto 1fr;
@@ -1496,6 +1502,7 @@
         </div>
 
         <div class="hero-visual reveal">
+          <div id="three-container" aria-hidden="true"></div>
           <div class="signal-grid" aria-hidden="true"></div>
           <div class="visual-stack">
             <div class="glass-panel status-bar">
