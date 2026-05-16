@@ -33,6 +33,12 @@ if ("IntersectionObserver" in window) {
   });
 }
 
+window.setTimeout(() => {
+  revealItems.forEach((item) => {
+    item.classList.add("is-visible");
+  });
+}, 900);
+
 window.addEventListener("load", () => {
   document.querySelectorAll(".contact-buttons").forEach((group) => {
     group.classList.add("is-loaded");
