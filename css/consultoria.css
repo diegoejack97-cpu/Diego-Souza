@@ -1,0 +1,54 @@
+/* Ajustes específicos do posicionamento comercial de consultoria. */
+
+.service-modules {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hero h1 {
+  max-width: 13ch;
+}
+
+.hero-copy .lead {
+  max-width: 64ch;
+}
+
+.contact-button svg,
+.footer-links svg {
+  flex: 0 0 auto;
+}
+
+.service-module {
+  height: 100%;
+}
+
+.service-module h3 {
+  min-height: 76px;
+}
+
+#metodo .differentials-grid {
+  align-items: stretch;
+}
+
+#metodo .differential-card {
+  height: 100%;
+}
+
+@media (max-width: 1180px) {
+  .service-modules {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .service-modules {
+    grid-template-columns: 1fr;
+  }
+
+  .service-module h3 {
+    min-height: auto;
+  }
+
+  .hero h1 {
+    max-width: 12ch;
+  }
+}
